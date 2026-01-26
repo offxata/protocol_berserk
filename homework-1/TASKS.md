@@ -16,14 +16,6 @@ By completing this homework, you will:
 
 ---
 
-## 🛠️ Requirements
-
-### Tools
-Use **at least 2** of the following AI coding tools:
-- 🤖 Claude Code
-- 🐙 GitHub Copilot 
-
-
 ### Technology Stack (Choose One)
 - **Node.js** with Express.js
 - **Python** with Flask or FastAPI
