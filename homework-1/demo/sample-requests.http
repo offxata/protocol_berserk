@@ -1,0 +1,168 @@
+### Banking Transactions API - Sample Requests
+### Use with REST Client extension in VS Code or similar tools
+### Base URL: http://localhost:3000
+
+### Variables
+@baseUrl = http://localhost:3000
+@transactionId = {{createTransaction.response.body.id}}
+@accountId = ACC-12345
+
+### Health Check
+GET {{baseUrl}}/health
+
+### 1. Create a Transfer Transaction
+# @name createTransaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### 2. Create a Deposit Transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-99999",
+  "toAccount": "ACC-12345",
+  "amount": 500.00,
+  "currency": "USD",
+  "type": "deposit"
+}
+
+### 3. Create a Withdrawal Transaction
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-88888",
+  "amount": 200.00,
+  "currency": "USD",
+  "type": "withdrawal"
+}
+
+### 4. Create Multiple Transactions for Testing
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-11111",
+  "toAccount": "ACC-12345",
+  "amount": 300.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-22222",
+  "amount": 150.00,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+###
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-33333",
+  "toAccount": "ACC-12345",
+  "amount": 750.00,
+  "currency": "EUR",
+  "type": "deposit"
+}
+
+### 5. Get All Transactions
+GET {{baseUrl}}/transactions
+
+### 6. Get Transaction by ID
+GET {{baseUrl}}/transactions/{{transactionId}}
+
+### 7. Filter Transactions by Account
+GET {{baseUrl}}/transactions?accountId={{accountId}}
+
+### 8. Filter Transactions by Type
+GET {{baseUrl}}/transactions?type=transfer
+
+### 9. Filter Transactions by Date Range
+GET {{baseUrl}}/transactions?from=2024-01-01&to=2024-12-31
+
+### 10. Combine Multiple Filters
+GET {{baseUrl}}/transactions?accountId={{accountId}}&type=transfer&from=2024-01-01&to=2024-12-31
+
+### 11. Get Account Balance
+GET {{baseUrl}}/accounts/{{accountId}}/balance
+
+### 12. Get Account Summary
+GET {{baseUrl}}/accounts/{{accountId}}/summary
+
+### 13. Get Balance for Another Account
+GET {{baseUrl}}/accounts/ACC-67890/balance
+
+### 14. Get Summary for Another Account
+GET {{baseUrl}}/accounts/ACC-67890/summary
+
+### Error Cases - Invalid Account Format
+GET {{baseUrl}}/accounts/INVALID-123/balance
+
+### Error Cases - Invalid Transaction ID
+GET {{baseUrl}}/transactions/non-existent-id
+
+### Error Cases - Invalid Transaction Data (Negative Amount)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": -100,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Error Cases - Invalid Transaction Data (Invalid Currency)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "INVALID",
+  "type": "transfer"
+}
+
+### Error Cases - Invalid Transaction Data (Invalid Account Format)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "INVALID-123",
+  "toAccount": "ACC-67890",
+  "amount": 100.50,
+  "currency": "USD",
+  "type": "transfer"
+}
+
+### Error Cases - Invalid Transaction Data (Too Many Decimals)
+POST {{baseUrl}}/transactions
+Content-Type: application/json
+
+{
+  "fromAccount": "ACC-12345",
+  "toAccount": "ACC-67890",
+  "amount": 100.555,
+  "currency": "USD",
+  "type": "transfer"
+}

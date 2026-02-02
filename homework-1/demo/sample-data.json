@@ -1,0 +1,116 @@
+{
+  "transactions": [
+    {
+      "fromAccount": "ACC-99999",
+      "toAccount": "ACC-12345",
+      "amount": 1000.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Initial deposit"
+    },
+    {
+      "fromAccount": "ACC-88888",
+      "toAccount": "ACC-12345",
+      "amount": 500.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Salary deposit"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-77777",
+      "amount": 200.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "ATM withdrawal"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-66666",
+      "amount": 100.00,
+      "currency": "USD",
+      "type": "withdrawal",
+      "description": "Payment for services"
+    },
+    {
+      "fromAccount": "ACC-11111",
+      "toAccount": "ACC-12345",
+      "amount": 300.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Payment received from client"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-22222",
+      "amount": 150.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Payment to supplier"
+    },
+    {
+      "fromAccount": "ACC-33333",
+      "toAccount": "ACC-12345",
+      "amount": 750.00,
+      "currency": "EUR",
+      "type": "transfer",
+      "description": "International transfer received"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-44444",
+      "amount": 50.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Small payment"
+    },
+    {
+      "fromAccount": "ACC-55555",
+      "toAccount": "ACC-12345",
+      "amount": 1200.00,
+      "currency": "USD",
+      "type": "deposit",
+      "description": "Large deposit"
+    },
+    {
+      "fromAccount": "ACC-12345",
+      "toAccount": "ACC-67890",
+      "amount": 100.50,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Standard transfer"
+    }
+  ],
+  "accounts": [
+    {
+      "accountId": "ACC-12345",
+      "description": "Main checking account"
+    },
+    {
+      "accountId": "ACC-67890",
+      "description": "Savings account"
+    },
+    {
+      "accountId": "ACC-11111",
+      "description": "Business account"
+    },
+    {
+      "accountId": "ACC-22222",
+      "description": "Supplier account"
+    }
+  ],
+  "testScenarios": {
+    "balanceCalculation": {
+      "accountId": "ACC-12345",
+      "expectedBalance": 2250.00,
+      "description": "After all transactions: deposits (1000+500+1200) - withdrawals (200+100) + transfers received (300+750) - transfers sent (150+50+100.50)"
+    },
+    "summaryCalculation": {
+      "accountId": "ACC-12345",
+      "expectedDeposits": 2700.00,
+      "expectedWithdrawals": 300.00,
+      "expectedTransactionCount": 10,
+      "description": "Summary for ACC-12345 after all transactions"
+    }
+  }
+}
